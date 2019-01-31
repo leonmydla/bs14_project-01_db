@@ -16,7 +16,6 @@ public class GenerateScooterPrices {
 
     private final ScooterPriceRepository priceRepo;
     private final ScooterRepository scooterRepo;
-    private final int priceTimeMarginInDays = 50 * 24 * 60 * 60 * 1000;
 
     public GenerateScooterPrices(
             ScooterRepository scooterRepo,
@@ -34,7 +33,15 @@ public class GenerateScooterPrices {
         while (workingDate.after(maxDate)) {
             createPrice(type, workingDate, definition);
 
-            workingDate = new Date(workingDate.getTime() + priceTimeMarginInDays);
+            int month = workingDate.getMonth() + 1;
+
+            if(month >= 11) {
+                month = 1;
+                int year = workingDate.getYear() + 1;
+                workingDate.setYear(year);
+            }
+
+            workingDate.setMonth(month);
         }
     }
 

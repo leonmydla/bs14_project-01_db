@@ -58,7 +58,7 @@ public class GenerateScooters {
     private void generateTypes(ScooterTypeDefinition definition) {
         ScooterType type = genTypes.generateScooterType(definition.getName(), definition.getParts());
         createScootersForType(definition, type);
-        genPrices.generateScooterPrice(definition, type);
+        //genPrices.generateScooterPrice(definition, type);
     }
 
     @Transactional
