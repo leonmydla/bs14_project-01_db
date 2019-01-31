@@ -10,7 +10,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 public class ScooterOption extends AbstractPersistable<Long> {

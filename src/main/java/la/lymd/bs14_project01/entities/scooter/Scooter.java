@@ -14,7 +14,7 @@ import javax.persistence.ManyToOne;
 import java.util.Date;
 import java.util.List;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 public class Scooter extends AbstractPersistable<Long> {

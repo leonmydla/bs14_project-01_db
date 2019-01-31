@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import java.util.Date;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 public class Customer extends AbstractPersistable<Long> {

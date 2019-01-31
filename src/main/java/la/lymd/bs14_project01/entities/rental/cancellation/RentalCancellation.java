@@ -10,7 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 public class RentalCancellation extends AbstractPersistable<Long> {

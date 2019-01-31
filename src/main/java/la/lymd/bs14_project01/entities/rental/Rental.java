@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import java.util.Date;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 public class Rental extends AbstractPersistable<Long> {

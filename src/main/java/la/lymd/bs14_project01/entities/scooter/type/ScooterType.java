@@ -12,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 public class ScooterType extends AbstractPersistable<Long> {

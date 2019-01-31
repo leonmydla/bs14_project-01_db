@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 
-//@Entity
+@Entity
 @Getter
 @Setter
 public class RentalInternalUse extends AbstractPersistable<Long> {
