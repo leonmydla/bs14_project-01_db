@@ -11,7 +11,7 @@ import java.util.List;
 @Setter
 @Configuration
 @ConfigurationProperties(prefix = "guideline")
-public class GuidelineConf {
+public class GuidelineConfig {
 
     private List<String> districts;
 

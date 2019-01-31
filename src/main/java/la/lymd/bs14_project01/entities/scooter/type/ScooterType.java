@@ -1,5 +1,7 @@
-package la.lymd.bs14_project01.ents;
+package la.lymd.bs14_project01.entities.scooter.type;
 
+import la.lymd.bs14_project01.entities.scooter.part.ScooterTypePart;
+import la.lymd.bs14_project01.entities.scooter.Scooter;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractPersistable;
@@ -10,7 +12,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import java.util.List;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 public class ScooterType extends AbstractPersistable<Long> {

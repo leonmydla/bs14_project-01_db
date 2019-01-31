@@ -1,4 +1,4 @@
-package la.lymd.bs14_project01.ents;
+package la.lymd.bs14_project01.entities.district;
 
 import lombok.Getter;
 import lombok.Setter;

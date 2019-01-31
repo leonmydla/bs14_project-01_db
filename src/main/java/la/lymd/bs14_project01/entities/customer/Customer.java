@@ -1,4 +1,4 @@
-package la.lymd.bs14_project01.ents;
+package la.lymd.bs14_project01.entities.customer;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -7,7 +7,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 import javax.persistence.Entity;
 import java.util.Date;
 
-@Entity
+//@Entity
 @Getter
 @Setter
 public class Customer extends AbstractPersistable<Long> {
