@@ -19,15 +19,13 @@ public class ScooterPrice extends AbstractPersistable {
 
     private Date start;
 
-    private Date end;
+    private double hourlyPrice;
 
-    private float hourlyPrice;
+    private double halfdayDiscount;
 
-    private float halfdayDiscount;
+    private double fulldayDiscount;
 
-    private float fulldayDiscount;
+    private double threedayDiscount;
 
-    private float threedayDiscount;
-
-    private float weekDiscount;
+    private double weekDiscount;
 }

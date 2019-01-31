@@ -24,7 +24,7 @@ public class GenerateScooterTypes {
         this.partRepo = partRepository;
     }
 
-    void generateScooterType(String name, List<String> parts) {
+    ScooterType generateScooterType(String name, List<String> parts) {
         ScooterType type = typeRepo.findOneByName(name);
 
         if (type == null) {
@@ -33,7 +33,7 @@ public class GenerateScooterTypes {
         }
 
         type.setParts(generateMissingParts(parts));
-        typeRepo.save(type);
+        return typeRepo.save(type);
     }
 
     private List<ScooterTypePart> generateMissingParts(List<String> parts) {

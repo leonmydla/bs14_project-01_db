@@ -11,6 +11,7 @@ import la.lymd.bs14_project01.entities.scooter.type.ScooterType;
 import la.lymd.bs14_project01.entities.scooter.type.ScooterTypeRepository;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.processing.Generated;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -22,6 +23,7 @@ public class GenerateScooters {
     private final List<ScooterTypeDefinition> scooterTypes;
     private final GuidelineConfig conf;
     private final GenerateScooterTypes genTypes;
+    private final GenerateScooterPrices genPrices;
     private final ScooterTypeRepository typeRepo;
     private final DistrictRepository districtRepo;
     private final ScooterRepository scooterRepo;
@@ -29,6 +31,7 @@ public class GenerateScooters {
     public GenerateScooters(
             GuidelineConfig conf,
             GenerateScooterTypes genTypes,
+            GenerateScooterPrices genPrices,
             ScooterTypeRepository typeRepo,
             DistrictRepository districtRepo,
             ScooterRepository scooterRepo
@@ -41,6 +44,7 @@ public class GenerateScooters {
 
         this.conf = conf;
         this.genTypes = genTypes;
+        this.genPrices = genPrices;
         this.typeRepo = typeRepo;
         this.districtRepo = districtRepo;
         this.scooterRepo = scooterRepo;
@@ -51,13 +55,12 @@ public class GenerateScooters {
     }
 
     private void generateTypes(ScooterTypeDefinition definition) {
-        genTypes.generateScooterType(definition.getName(), definition.getParts());
-        createScootersForType(definition);
+        ScooterType type = genTypes.generateScooterType(definition.getName(), definition.getParts());
+        genPrices.generateScooterPrice(definition, type);
+        createScootersForType(definition, type);
     }
 
-    private void createScootersForType(ScooterTypeDefinition definition) {
-        ScooterType type = typeRepo.findOneByName(definition.getName());
-
+    private void createScootersForType(ScooterTypeDefinition definition, ScooterType type) {
         for (int i = 0; i < definition.getTotalAmount(); i++) {
             List<District> districts = Lists.newArrayList(districtRepo.findAll());
             Collections.shuffle(districts);
