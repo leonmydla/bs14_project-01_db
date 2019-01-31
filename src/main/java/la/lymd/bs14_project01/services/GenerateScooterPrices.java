@@ -40,6 +40,8 @@ public class GenerateScooterPrices {
             price.setThreedayDiscount(fluctuate(definition.getThreeDayDiscount()));
             price.setWeekDiscount(fluctuate(definition.getWeekDiscount()));
 
+            priceRepo.save(price);
+
             workingDate = new Date(workingDate.getTime() + priceTimeMarginInDays);
         }
     }
