@@ -10,6 +10,7 @@ import la.lymd.bs14_project01.entities.scooter.ScooterRepository;
 import la.lymd.bs14_project01.entities.scooter.type.ScooterType;
 import la.lymd.bs14_project01.entities.scooter.type.ScooterTypeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.processing.Generated;
 import java.util.ArrayList;
@@ -56,11 +57,12 @@ public class GenerateScooters {
 
     private void generateTypes(ScooterTypeDefinition definition) {
         ScooterType type = genTypes.generateScooterType(definition.getName(), definition.getParts());
-        genPrices.generateScooterPrice(definition, type);
         createScootersForType(definition, type);
+        genPrices.generateScooterPrice(definition, type);
     }
 
-    private void createScootersForType(ScooterTypeDefinition definition, ScooterType type) {
+    @Transactional
+    protected void createScootersForType(ScooterTypeDefinition definition, ScooterType type) {
         for (int i = 0; i < definition.getTotalAmount(); i++) {
             List<District> districts = Lists.newArrayList(districtRepo.findAll());
             Collections.shuffle(districts);

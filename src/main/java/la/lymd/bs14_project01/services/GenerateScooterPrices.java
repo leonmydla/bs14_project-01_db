@@ -6,6 +6,7 @@ import la.lymd.bs14_project01.entities.scooter.price.ScooterPrice;
 import la.lymd.bs14_project01.entities.scooter.price.ScooterPriceRepository;
 import la.lymd.bs14_project01.entities.scooter.type.ScooterType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.Random;
@@ -31,19 +32,24 @@ public class GenerateScooterPrices {
         Date maxDate = new Date();
 
         while (workingDate.after(maxDate)) {
-            ScooterPrice price = new ScooterPrice();
-            price.setType(type);
-            price.setStart(workingDate);
-            price.setHourlyPrice(fluctuate(definition.getPrice()));
-            price.setHalfdayDiscount(fluctuate(definition.getHalfDayDiscount()));
-            price.setFulldayDiscount(fluctuate(definition.getFullDayDiscount()));
-            price.setThreedayDiscount(fluctuate(definition.getThreeDayDiscount()));
-            price.setWeekDiscount(fluctuate(definition.getWeekDiscount()));
-
-            priceRepo.save(price);
+            createPrice(type, workingDate, definition);
 
             workingDate = new Date(workingDate.getTime() + priceTimeMarginInDays);
         }
+    }
+
+    @Transactional
+    protected void createPrice(ScooterType type, Date workingDate, ScooterTypeDefinition definition) {
+        ScooterPrice price = new ScooterPrice();
+        price.setType(type);
+        price.setStart(workingDate);
+        price.setHourlyPrice(fluctuate(definition.getPrice()));
+        price.setHalfdayDiscount(fluctuate(definition.getHalfDayDiscount()));
+        price.setFulldayDiscount(fluctuate(definition.getFullDayDiscount()));
+        price.setThreedayDiscount(fluctuate(definition.getThreeDayDiscount()));
+        price.setWeekDiscount(fluctuate(definition.getWeekDiscount()));
+
+        priceRepo.save(price);
     }
 
     private double fluctuate(double val) {

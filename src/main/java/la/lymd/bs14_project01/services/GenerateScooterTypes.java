@@ -6,6 +6,7 @@ import la.lymd.bs14_project01.entities.scooter.part.ScooterTypePartRepository;
 import la.lymd.bs14_project01.entities.scooter.type.ScooterType;
 import la.lymd.bs14_project01.entities.scooter.type.ScooterTypeRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,6 +25,7 @@ public class GenerateScooterTypes {
         this.partRepo = partRepository;
     }
 
+    @Transactional
     ScooterType generateScooterType(String name, List<String> parts) {
         ScooterType type = typeRepo.findOneByName(name);
 
