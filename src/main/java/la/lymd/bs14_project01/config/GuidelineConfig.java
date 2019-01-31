@@ -15,15 +15,14 @@ public class GuidelineConfig {
 
     @Setter
     private List<String> districts;
-    public List<DistrictDefinition> getDistrictsList() {
-        return new DistrictsDefinition(this.getDistricts()).getDistricts();
-    }
-
     private float damagedPercent;
     private List<String> damageReasons;
-
     private ScooterTypeDefinition type1;
     private ScooterTypeDefinition type2;
     private ScooterTypeDefinition type3;
     private ScooterTypeDefinition type4;
+
+    public List<DistrictDefinition> getDistrictsList() {
+        return new DistrictsDefinition(this.getDistricts()).getDistricts();
+    }
 }

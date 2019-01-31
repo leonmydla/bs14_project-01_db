@@ -27,7 +27,7 @@ public class GenerateScooterTypes {
     void generateScooterType(String name, List<String> parts) {
         ScooterType type = typeRepo.findOneByName(name);
 
-        if(type == null) {
+        if (type == null) {
             type = new ScooterType();
             type.setName(name);
         }
