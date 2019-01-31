@@ -1,11 +1,11 @@
 package la.lymd.bs14_project01.entities.scooter;
 
+import la.lymd.bs14_project01.entities.AbstractPersistable;
+import la.lymd.bs14_project01.entities.district.District;
 import la.lymd.bs14_project01.entities.scooter.option.ScooterOption;
 import la.lymd.bs14_project01.entities.scooter.type.ScooterType;
-import la.lymd.bs14_project01.entities.district.Disctrict;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinTable;
@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class Scooter extends AbstractPersistable<Long> {
+public class Scooter extends AbstractPersistable {
 
     @ManyToOne
     private ScooterType type;
@@ -31,7 +31,7 @@ public class Scooter extends AbstractPersistable<Long> {
     private Date joinedFleet;
 
     @ManyToOne
-    private Disctrict district;
+    private District district;
 
     private boolean deployed;
 

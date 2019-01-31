@@ -1,10 +1,10 @@
 package la.lymd.bs14_project01.entities.rental;
 
-import la.lymd.bs14_project01.entities.scooter.Scooter;
+import la.lymd.bs14_project01.entities.AbstractPersistable;
 import la.lymd.bs14_project01.entities.customer.Customer;
+import la.lymd.bs14_project01.entities.scooter.Scooter;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -13,7 +13,7 @@ import java.util.Date;
 @Entity
 @Getter
 @Setter
-public class Rental extends AbstractPersistable<Long> {
+public class Rental extends AbstractPersistable {
 
     @ManyToOne
     private Customer customer;

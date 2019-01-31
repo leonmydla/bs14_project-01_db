@@ -2,30 +2,44 @@ package la.lymd.bs14_project01.services;
 
 import la.lymd.bs14_project01.config.GuidelineConfig;
 import la.lymd.bs14_project01.config.ScooterTypeDefinition;
+import la.lymd.bs14_project01.entities.scooter.type.ScooterType;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class GenerateScooters {
+    private final List<ScooterTypeDefinition> scooterTypes;
     private final GuidelineConfig conf;
+    private final GenerateScooterTypes genTypes;
 
-    public GenerateScooters(GuidelineConfig conf) {
+    public GenerateScooters(
+            GuidelineConfig conf,
+            GenerateScooterTypes genTypes
+    ) {
+        scooterTypes = new ArrayList<>();
+        scooterTypes.add(conf.getType1());
+        scooterTypes.add(conf.getType2());
+        scooterTypes.add(conf.getType3());
+        scooterTypes.add(conf.getType4());
+
         this.conf = conf;
+        this.genTypes = genTypes;
     }
 
-    public void generate() {
-        generateScooters(conf.getType1());
-        generateScooters(conf.getType2());
-        generateScooters(conf.getType3());
-        generateScooters(conf.getType4());
+    void generate() {
+        scooterTypes.forEach(this::generateTypes);
+        generateScooters();
     }
 
-    @Transactional
-    protected void generateScooters(ScooterTypeDefinition definition) {
-
+    private void generateTypes(ScooterTypeDefinition definition) {
+        genTypes.generateScooterType(definition.getName(), definition.getParts());
     }
 
-    protected void generateScooterType(String name) {
-
+    private void generateScooters() {
+        ScooterTypeDefinition
     }
+
+
 }

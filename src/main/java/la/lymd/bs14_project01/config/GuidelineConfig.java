@@ -13,7 +13,11 @@ import java.util.List;
 @ConfigurationProperties(prefix = "guideline")
 public class GuidelineConfig {
 
+    @Setter
     private List<String> districts;
+    public List<DistrictDefinition> getDistrictsList() {
+        return new DistrictsDefinition(this.getDistricts()).getDistricts();
+    }
 
     private float damagedPercent;
     private List<String> damageReasons;
